@@ -2,10 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Command } from "cmdk";
-import { LuArrowUp, LuCopy, LuHash, LuMail, LuSearch } from "react-icons/lu";
+import { LuArrowUp, LuCopy, LuDownload, LuHash, LuMail, LuSearch } from "react-icons/lu";
 import { SiGithub } from "react-icons/si";
 import { profile, sections } from "@/content/site";
-import { PALETTE_EVENT, copyText, goTo } from "@/lib/bus";
+import { PALETTE_EVENT, copyText, download, goTo } from "@/lib/bus";
 
 /** Command palette on Cmd/Ctrl+K. Doubles as the menu on small screens. */
 export function CommandPalette() {
@@ -80,6 +80,13 @@ export function CommandPalette() {
             >
               <LuMail aria-hidden="true" />
               Email Juan
+            </Command.Item>
+            <Command.Item
+              value="download cv resume pdf"
+              onSelect={() => run(() => download(profile.cv))}
+            >
+              <LuDownload aria-hidden="true" />
+              Download CV
             </Command.Item>
             <Command.Item
               value="github profile code repos"

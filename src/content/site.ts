@@ -8,6 +8,8 @@ export const profile = {
   location: "Pereira, Colombia",
   email: "juanbedoya3918@gmail.com",
   github: "https://github.com/juancho391",
+  // The PDF in /public. Replace the file to update the CV.
+  cv: "/Juan-Bedoya-CV.pdf",
   // Optional. Leave empty to keep the phone number off the public page.
   phone: "",
 };

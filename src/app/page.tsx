@@ -1,4 +1,4 @@
-import { LuMail } from "react-icons/lu";
+import { LuDownload, LuMail } from "react-icons/lu";
 import { SiGithub } from "react-icons/si";
 import { CommandPalette } from "@/components/CommandPalette";
 import { CopyEmail } from "@/components/CopyEmail";
@@ -48,6 +48,10 @@ export default function Home() {
                 </a>
                 <a className="btn btn--secondary" href="#work">
                   See the work
+                </a>
+                <a className="btn btn--secondary" href={profile.cv} download>
+                  <LuDownload aria-hidden="true" />
+                  Download CV
                 </a>
                 <a
                   className="btn btn--secondary btn--icon"
@@ -214,6 +218,10 @@ export default function Home() {
               {profile.email}
             </a>
             <CopyEmail email={profile.email} />
+            <a className="btn btn--secondary" href={profile.cv} download>
+              <LuDownload aria-hidden="true" />
+              Download CV
+            </a>
             <a
               className="btn btn--secondary"
               href={profile.github}

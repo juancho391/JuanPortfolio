@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { profile, projects, sections, stack, work } from "@/content/site";
-import { copyText, goTo } from "@/lib/bus";
+import { copyText, download, goTo } from "@/lib/bus";
 import { Term } from "./Term";
 
 type Entry = { id: number; cmd: string; out: React.ReactNode };
@@ -13,14 +13,15 @@ const help: [string, string][] = [
   ["projects", "the project index"],
   ["stack", "tools by area"],
   ["contact", "how to reach me"],
+  ["cv", "download my CV as a PDF"],
   ["github", "open my GitHub profile"],
   ["copy", "copy my email address"],
   ["open <section>", `jump to ${sections.map((s) => s.id).join(", ")}`],
   ["clear", "empty the screen"],
 ];
 
-const names = ["help", "whoami", "work", "projects", "stack", "contact", "github", "copy", "open", "clear"];
-const quick = ["help", "whoami", "work", "projects", "stack", "contact", "github"];
+const names = ["help", "whoami", "work", "projects", "stack", "contact", "cv", "github", "copy", "open", "clear"];
+const quick = ["help", "whoami", "work", "projects", "stack", "contact", "cv", "github"];
 
 function Pairs({ rows }: { rows: [string, string][] }) {
   return (
@@ -65,6 +66,14 @@ function answer(input: string): React.ReactNode {
           <span className="sh__dim"> (run copy to put it on your clipboard)</span>
           <br />
           <a href={profile.github} target="_blank" rel="noreferrer">{profile.github.replace("https://", "")}</a>
+        </p>
+      );
+    case "cv":
+    case "resume":
+      download(profile.cv);
+      return (
+        <p>
+          Downloading <a href={profile.cv} download>{profile.cv.slice(1)}</a>.
         </p>
       );
     case "github":

@@ -31,3 +31,14 @@ export function goTo(id: string) {
   window.history.replaceState(null, "", `#${id}`);
   return true;
 }
+
+/** Starts a file download without leaving the page. */
+export function download(href: string) {
+  const link = document.createElement("a");
+  link.href = href;
+  link.download = href.split("/").pop() ?? "";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  say("Downloading the CV.");
+}
